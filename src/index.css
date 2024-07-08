@@ -13,11 +13,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  display: flex;
-  place-items: center;
-}
-
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
