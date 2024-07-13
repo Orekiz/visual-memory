@@ -185,15 +185,23 @@ function App() {
 
   return (
     <>
-      <h1 className='text-center font-bold'>Visual Memory Test<br /> 视觉记忆测试</h1>
+      <h1 className='text-center font-bold text-lg'>Visual Memory Test<br /> 视觉记忆测试</h1>
       <section className={`w-screen mt-4 p-4 relative flex flex-col items-center gap-4 ${isShowWin ? 'bg-green-400/30' : ''} ${isShowFail ? 'bg-red-400/30' : ''} transition`}>
         {
           !isUserStart &&
-          <div className='absolute top-0 left-0 w-full h-full bg-slate-900/10 backdrop-blur-xl flex justify-center items-center'>
-            <button onClick={handleClickStart} className='px-4 py-2 bg-slate-600 hover:bg-slate-400 rounded'>start</button>
+          <div className='absolute top-0 left-0 w-full h-full bg-slate-900/70 backdrop-blur-2xl flex gap-8 justify-center items-center'>
+            <div>
+              <p className='max-w-96'>规则如下： <br />开始后矩阵内会 <span className='inline-block bg-slate-600/90 px-1 rounded-xl'>随机</span> 出现一些 <span className='inline-block bg-slate-600/90 px-1 rounded-xl'>高亮色块</span> ，需要你记住他的位置。记忆时间结束后，高亮色块消失，需要你点选出高亮色块 <span className='inline-block bg-slate-600/90 px-1 rounded-xl'>之前出现的位置</span>。</p>
+              <p className='max-w-96'>The rules are as follows: <br />
+              When you start, some <span className='inline-block bg-slate-600/90 px-1 rounded-xl'>highlighted</span> color blocks will appear <span className='inline-block bg-slate-600/90 px-1 rounded-xl'>randomly</span> in the matrix, and you need to memorize their positions. At the end of the memorization time, the highlighted color blocks disappear and you need to pick the position where the highlighted color block  <span className='inline-block bg-slate-600/90 px-1 rounded-xl'>appeared before</span> .</p>
+            </div>
+            <div>
+              <p>单击下方按钮开始游戏。<br /> click the button bellow to start the game.</p>
+              <button onClick={handleClickStart} className='px-4 py-2 bg-slate-600 hover:bg-slate-400 rounded'>开始 / START</button>
+            </div>
           </div>
         }
-        <p className='font-bold'>Level: { level } , HP: { HP }</p>
+        <p className='font-bold'>Level/关卡等级: { level } , HP/血条: { HP }</p>
         <div className='w-96 h-96 grid' style={stylea}>
           {
             Array.from({ length: Math.pow(widthCount, 2) }).map((_, j) => {
@@ -201,7 +209,7 @@ function App() {
                 <div key={j} 
                 data-index={j}
                 onClick={handleChooseBlock}
-                className={`w-full h-full rounded ${showMemoryBlocks.includes(j) ? 'bg-slate-600' : ''} ${choosedBlocks[j] ? (choosedBlocks[j].correct ? 'bg-slate-600' : 'bg-zinc-400') : 'bg-slate-400'} ${isRemOver ? 'cursor-pointer' : ''} transition`}>
+                className={`w-full h-full rounded ${showMemoryBlocks.includes(j) ? 'bg-slate-600' : ''} ${choosedBlocks[j] ? (choosedBlocks[j].correct ? 'bg-slate-600' : 'bg-red-300/80') : 'bg-slate-400'} ${isRemOver ? 'cursor-pointer' : ''} transition`}>
                 </div>
               )
             })
